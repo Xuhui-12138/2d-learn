@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://07hi8lyxirgm"]
+
+[ext_resource type="Script" uid="uid://df3xuwa6vi4f4" path="res://Mob.gd" id="1_ejbti"]
+[ext_resource type="Texture2D" uid="uid://cf7taaoj20no1" path="res://art/enemyFlyingAlt_1.png" id="2_ch7wj"]
+[ext_resource type="Texture2D" uid="uid://cu5freh1vc7a" path="res://art/enemyFlyingAlt_2.png" id="3_x4v8o"]
+[ext_resource type="Texture2D" uid="uid://co02g83l7gk87" path="res://art/enemySwimming_1.png" id="4_w71a0"]
+[ext_resource type="Texture2D" uid="uid://b0xgt3c3ite8a" path="res://art/enemySwimming_2.png" id="5_utplx"]
+[ext_resource type="Texture2D" uid="uid://cjfa5kkaxbya5" path="res://art/enemyWalking_1.png" id="6_6v40e"]
+[ext_resource type="Texture2D" uid="uid://cb411sdpq1o1b" path="res://art/enemyWalking_2.png" id="7_xqp27"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wvhbo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ch7wj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_x4v8o")
+}],
+"loop": 1,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_w71a0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_utplx")
+}],
+"loop": 1,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_6v40e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xqp27")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ifow5"]
+radius = 37.0
+height = 102.0
+
+[node name="Mob" type="RigidBody2D" unique_id=878446887]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_ejbti")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1764203648]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_wvhbo")
+animation = &"swim"
+frame = 1
+frame_progress = 0.28351915
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=543986678]
+enable_node_path = NodePath("")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=897483715]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ifow5")
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
