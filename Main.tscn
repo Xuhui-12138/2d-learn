@@ -48,12 +48,15 @@ wait_time = 0.5
 
 [node name="ScoreTimer" type="Timer" parent="." unique_id=156869715]
 
+[node name="LevelTimer" type="Timer" parent="." unique_id=1287885636]
+wait_time = 8.0
+
 [node name="StartTimer" type="Timer" parent="." unique_id=1155350084]
 wait_time = 2.0
 one_shot = true
 
 [node name="StartPosition" type="Marker2D" parent="." unique_id=282070995]
-position = Vector2(240, 450)
+position = Vector2(233, 478)
 
 [node name="MobPath" type="Path2D" parent="." unique_id=210384558]
 curve = SubResource("Curve2D_r0du0")
@@ -73,5 +76,6 @@ stream = ExtResource("5_fos0i")
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="start_game" from="Hud" to="." method="new_game"]

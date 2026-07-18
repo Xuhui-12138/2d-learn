@@ -10,7 +10,8 @@ func _ready() -> void:
 	screen_size=get_viewport_rect().size
 	var capsule=$CollisionShape2D.shape as CapsuleShape2D
 	collision_half_size=Vector2(capsule.radius,0.5*capsule.height)
-	
+	hide()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
